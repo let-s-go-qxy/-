@@ -10,3 +10,7 @@ func main() {
 	fmt.Println(len(slice2), cap(slice2))
 
 }
+
+func add() {
+
+}
