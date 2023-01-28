@@ -1,0 +1,221 @@
+info:
+  contact: {}
+paths:
+  /login:
+    post:
+      parameters:
+      - description: user
+        in: formData
+        name: username
+        type: string
+      - description: password
+        in: formData
+        name: password
+        type: string
+      responses:
+        "200":
+          description: '{"code": 200, "msg":"ok", "data":{}}'
+          schema:
+            type: string
+      summary: 用户登录,得到token
+      tags:
+      - 公共方法
+  /problem-create:
+    post:
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: string
+      - description: title
+        in: formData
+        name: title
+        required: true
+        type: string
+      - description: content
+        in: formData
+        name: content
+        required: true
+        type: string
+      - description: max_runtime
+        in: formData
+        name: max_runtime
+        required: true
+        type: string
+      - description: max_memory
+        in: formData
+        name: max_mem
+        required: true
+        type: string
+      - description: 问题分类, 注意传递id列表 1
+        in: formData
+        name: category_ids
+        type: array
+      - description: 测试样例 {
+        in: formData
+        name: test_cases
+        type: array
+      responses:
+        "200":
+          description: '{"code": 200, "msg":"ok", "data":{}}'
+          schema:
+            type: string
+      summary: 创建问题
+      tags:
+      - 管理员私有
+  /problem-detail:
+    get:
+      parameters:
+      - description: 唯一标识
+        in: query
+        name: identity
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{"code": 200, "msg":"ok", "data":{}}'
+          schema:
+            type: string
+      summary: 问题详情
+      tags:
+      - 公共方法
+  /problem-list:
+    get:
+      parameters:
+      - description: 请输入当前页，默认1
+        in: query
+        name: page
+        type: integer
+      - description: 请输入size，默认10
+        in: query
+        name: size
+        type: integer
+      - description: keyword
+        in: query
+        name: keyword
+        type: string
+      - description: 分类唯一标识
+        in: query
+        name: category_identity
+        type: string
+      responses:
+        "200":
+          description: '{"code": 200, "msg":"ok", "data":[]}'
+          schema:
+            type: string
+      summary: 问题列表
+      tags:
+      - 公共方法
+  /rank-list:
+    get:
+      parameters:
+      - description: 请输入当前页，默认1
+        in: query
+        name: page
+        type: integer
+      - description: 请输入size，默认10
+        in: query
+        name: size
+        type: integer
+      responses:
+        "200":
+          description: '{"code": 200, "msg":"ok"}'
+          schema:
+            type: string
+      summary: 用户榜单
+      tags:
+      - 公共方法
+  /register:
+    post:
+      parameters:
+      - description: 邮箱
+        in: formData
+        name: mail
+        type: string
+      - description: 验证码
+        in: formData
+        name: code
+        type: string
+      - description: 名称
+        in: formData
+        name: name
+        type: string
+      - description: 密码
+        in: formData
+        name: password
+        type: string
+      - description: 手机号
+        in: formData
+        name: phone
+        type: string
+      responses:
+        "200":
+          description: '{"code": 200, "msg":"ok"}'
+          schema:
+            type: string
+      summary: 用户注册
+      tags:
+      - 公共方法
+  /send-code:
+    post:
+      parameters:
+      - description: 发送账号
+        in: formData
+        name: email
+        type: string
+      responses:
+        "200":
+          description: '{"code": 200, "msg":"ok"}'
+          schema:
+            type: string
+      summary: 发送验证码
+      tags:
+      - 公共方法
+  /submit-list:
+    get:
+      parameters:
+      - description: 请输入当前页，默认1
+        in: query
+        name: page
+        type: integer
+      - description: 请输入size，默认10
+        in: query
+        name: size
+        type: integer
+      - description: 问题唯一标识
+        in: query
+        name: problem_identity
+        type: string
+      - description: 用户唯一标识
+        in: query
+        name: user_identity
+        type: string
+      - description: 问题状态
+        in: query
+        name: status
+        type: string
+      responses:
+        "200":
+          description: '{"code": 200, "msg":"ok", "data":[]}'
+          schema:
+            type: string
+      summary: 提交列表
+      tags:
+      - 公共方法
+  /user-detail:
+    get:
+      parameters:
+      - description: 唯一标识
+        in: query
+        name: identity
+        type: string
+      responses:
+        "200":
+          description: '{"code": 200, "msg":"ok", "data":{}}'
+          schema:
+            type: string
+      summary: 用户详情
+      tags:
+      - 公共方法
+swagger: "2.0"
